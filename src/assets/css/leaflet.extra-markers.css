@@ -51,6 +51,8 @@
   opacity: 1;
 }
 /* Sprites setup */
+.extra-marker-none-none {
+}
 .extra-marker-circle-red {
   background-position: 0 0;
 }
