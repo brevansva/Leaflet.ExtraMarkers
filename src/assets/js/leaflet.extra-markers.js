@@ -12,6 +12,7 @@
             className: "",
             prefix: "",
             extraClasses: "",
+			markerShadow: "false",
             shape: "circle",
             icon: "",
             innerHTML: "",
@@ -84,7 +85,13 @@
             if (!anchor && size) {
                 anchor = size.divideBy(2, true);
             }
-            img.className = "leaflet-marker-" + leafletName + " extra-marker extra-marker-" + name + " " + options.className;
+			if (name === "none-none") {
+				img.className = "leaflet-marker-" + leafletName + " " + options.className;
+				anchor = size.divideBy(2, true);
+			}
+				
+			else
+				img.className = "leaflet-marker-" + leafletName + " extra-marker extra-marker-" + name + " " + options.className;
             if (anchor) {
                 img.style.marginLeft = -anchor.x + "px";
                 img.style.marginTop = -anchor.y + "px";
@@ -95,9 +102,11 @@
             }
         },
         createShadow: function() {
-            var div = document.createElement("div");
-            this._setIconStyles(div, "shadow");
-            return div;
+			var div = document.createElement("div");
+			if (this.options.markerShadow === "true") {	
+				this._setIconStyles(div, "shadow");
+			}
+			return div;
         }
     });
     L.ExtraMarkers.icon = function(options) {
